@@ -2,23 +2,15 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 )
 
-func main() {
-	http.HandleFunc("/", index)
-	http.HandleFunc("/vedas", veda)
-	log.Fatal(http.ListenAndServe(":9000", nil))
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Hello, World! This is a CI/CD Pipeline Test.")
 }
 
-func index(writer http.ResponseWriter, request *http.Request) {
-	msg := "hello from goo.."
-	fmt.Fprintln(writer, msg)
-}
-func veda(writer http.ResponseWriter, request *http.Request) {
-	var vedas = []string{"Rig", "Yaju", "Sama", "Atharva"}
-	for _, data := range vedas {
-		fmt.Fprintln(writer, data)
-	}
+func main() {
+	http.HandleFunc("/", handler)
+	fmt.Println("Starting server on :8080...")
+	http.ListenAndServe(":8080", nil)
 }
