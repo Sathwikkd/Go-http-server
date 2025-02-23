@@ -34,7 +34,7 @@ jobs:
       with:
         host: ${{ secrets.GCP_VM_IP }}
         username: ${{ secrets.GCP_VM_USER }}
-        key: ${{ secrets.GCP_SSH_KEY }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           if [ ! -d "~/app" ]; then
             git clone https://github.com/Sathwikkd/Go-http-server.git ~/app
